@@ -1,0 +1,20 @@
+body {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    background-color: antiquewhite;
+    min-width: 60vh;
+}
+
+th {
+    background-color: ghostwhite;
+    padding-bottom: 20px;
+}
+
+a {
+    display: flex;
+    justify-content: center;
+}
