@@ -5,13 +5,7 @@ body {
 }
 
 table {
-    background-color: antiquewhite;
     min-width: 60vh;
-}
-
-th {
-    background-color: ghostwhite;
-    padding-bottom: 20px;
 }
 
 a {

@@ -6,24 +6,31 @@
 
 {% block body %}
     <div class="content">
-        <h1>to-do list</h1>
-        <table>
-            <tr>
-                <th>Task</th>
-                <th>Added</th>
-                <th>Actions</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>
-                    <a href="">action</a>
-                    <br>
-                    <a href="">action</a>
-                    <br>
-                    <a href="">action</a>
-                </td>
-            </tr>
-        </table>
+        <h1>task manager</h1>
+        <form method="POST" action="/" name="taskform">
+            <input type="text" name="newtask" id="newtask" required autofocus>
+            <input type="submit" value="Add a task">
+        </form>
+        {% if tasks|length < 1 %}
+            <h4>the database is empty! add a task above</h4>
+        {% else %}
+            <table>
+                <tr>
+                    <th>Task</th>
+                    <th>Added</th>
+                    <th>Actions</th>
+                </tr>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.content }}</td>
+                        <td>{{ task.date_created.date() }}</td>
+                        <td>
+                            <a href="/delete/{{ task.id }}">delete</a>
+                            <a href="/update/{{ task.id }}">update</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
     </div>
 {% endblock %}

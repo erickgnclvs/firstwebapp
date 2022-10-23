@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -16,9 +16,56 @@ class Todo(db.Model):
         return '<Task %r>' % self.id
 
 
-@app.route("/")
+@app.route("/", methods=["POST", "GET"])
 def index():
-    return render_template("index.html")
+    if request.method == "POST":
+        taskcontent = request.form.get("newtask")
+        newtask = Todo(content=taskcontent)
+        
+        try:
+            db.session.add(newtask)
+            db.session.commit()
+            return redirect('/')
+
+        except:
+            return 'failure'
+
+
+    else:
+        tasks = Todo.query.order_by(Todo.date_created).all()
+        return render_template("index.html", tasks=tasks)
+
+@app.route("/delete/<int:id>")
+def delete(id):
+    tasktodelete = Todo.query.get_or_404(id)
+
+    try:
+        db.session.delete(tasktodelete)
+        db.session.commit()
+        return redirect('/')
+
+    except:
+        return 'failure'
+
+@app.route("/update/<int:id>", methods=['POST', 'GET'])
+def update(id):
+    task = Todo.query.get_or_404(id)
+
+    if request.method == "POST":
+
+        task.content = request.form.get("content")
+        
+        try:
+            db.session.commit()
+            return redirect('/')
+
+        except:
+            return 'failure'
+    
+    else:
+        return render_template('update.html', task=task)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
+

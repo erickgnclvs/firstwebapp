@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <h1>update task</h1>
+        <form method="POST" action="/update/{{ task.id }}">
+            <input type="text" name="content" id="content" value="{{ task.content }}" required autofocus>
+            <input type="submit" value="Update task">
+        </form>
+    </div>
+{% endblock %}
