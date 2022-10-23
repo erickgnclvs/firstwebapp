@@ -5,32 +5,48 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content">
-        <h1>task manager</h1>
-        <form method="POST" action="/" name="taskform">
-            <input type="text" name="newtask" id="newtask" required autofocus>
-            <input type="submit" value="Add a task">
-        </form>
-        {% if tasks|length < 1 %}
-            <h4>the database is empty! add a task above</h4>
-        {% else %}
-            <table>
-                <tr>
-                    <th>Task</th>
-                    <th>Added</th>
-                    <th>Actions</th>
-                </tr>
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ task.content }}</td>
-                        <td>{{ task.date_created.date() }}</td>
-                        <td>
-                            <a href="/delete/{{ task.id }}">delete</a>
-                            <a href="/update/{{ task.id }}">update</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        {% endif %}
+    <div id="container">
+        <div>
+            <div class="main-div">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>task manager</h1>
+                        <form method="POST" action="/" name="taskform">
+                            <div class="row">
+                                <div class="form-group col-auto">
+                                    <input class="form-control" type="text" name="newtask" id="newtask" required autofocus>
+                                </div>
+                                <div class="form-group col-auto">
+                                    <input class="btn btn-success" type="submit" value="Add a task">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-body">
+                        {% if tasks|length < 1 %}
+                            <h4>the database is empty! add a task above</h4>
+                        {% else %}
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Added</th>
+                                    <th>Actions</th>
+                                </tr>
+                                {% for task in tasks %}
+                                    <tr>
+                                        <td>{{ task.content }}</td>
+                                        <td>{{ task.date_created.date() }}</td>
+                                        <td>
+                                            <a href="/delete/{{ task.id }}">delete</a>
+                                            <a href="/update/{{ task.id }}">update</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

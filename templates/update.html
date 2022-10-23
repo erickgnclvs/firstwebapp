@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content">
+    <div class="container-fluid">
         <h1>update task</h1>
         <form method="POST" action="/update/{{ task.id }}">
             <input type="text" name="content" id="content" value="{{ task.content }}" required autofocus>

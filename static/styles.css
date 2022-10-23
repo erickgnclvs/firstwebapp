@@ -12,3 +12,20 @@ a {
     display: flex;
     justify-content: center;
 }
+
+form {
+    margin-bottom: 20px;
+}
+
+#container {
+    margin-top: 30px;
+}
+
+.card {
+    background-color: #fcc7e2!important;
+    border-width: 0!important;
+}
+
+.card-header {
+    border-bottom: none!important;
+}
