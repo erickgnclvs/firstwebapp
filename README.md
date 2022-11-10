@@ -1,6 +1,6 @@
 # firstwebapp
 
 this is my first web application project.
-it's supposed to use python and flask.
+it's supposed to use python and flask with sql.
 
-I still have o idea what's going to be.
+it's a simple task manager 
